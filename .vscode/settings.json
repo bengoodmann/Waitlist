@@ -1,0 +1,19 @@
+{
+    "sqltools.connections": [
+        {
+            "pgOptions": {
+                "ssl": {
+                    "rejectUnauthorized": true
+                }
+            },
+            "previewLimit": 50,
+            "server": "dpg-cq7l913v2p9s73c67f8g-a.frankfurt-postgres.render.com",
+            "port": 5432,
+            "askForPassword": true,
+            "driver": "PostgreSQL",
+            "name": "Waitlist",
+            "database": "db_6h1n",
+            "username": "db_6h1n_user"
+        }
+    ]
+}
