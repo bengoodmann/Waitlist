@@ -15,7 +15,7 @@ const ipinfoWrapper = new IPinfoWrapper(process.env.TOKEN);
 router.post("/track", async (req, res) => {
   const { endpoint } = req.body;
   try {
-    const ip = await ipify({ useIPv6: false });
+    const ip = req.ip
     const data = await ipinfoWrapper.lookupIp(ip);
 
     await Tracker.create({
