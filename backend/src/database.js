@@ -21,16 +21,6 @@ const sequelize = new Sequelize(
 );
 
 // Sync database models
-const syncDatabase = async () => {
-  try {
-    await sequelize.sync();
-    console.log("Database models synced");
-  } catch (err) {
-    console.error("Error syncing database models", err);
-  }
-};
-
-syncDatabase();
 
 export const WaitingUser = sequelize.define("user", {
   id: {
