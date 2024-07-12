@@ -34,7 +34,7 @@ router.post("/track", async (req, res) => {
 router.post("/join", async (req, res) => {
   try {
     const { name, email, test, pro, recommendFeatures } = req.body;
-    const checkEmail = await WaitingUser.findOne({ email });
+    const checkEmail = await WaitingUser.findOne({ email:email });
 
     if (checkEmail) {
       res
@@ -61,7 +61,7 @@ router.post("/join", async (req, res) => {
 router.post("/volunteer", async (req, res) => {
   try {
     const { name, email, profession, experience } = req.body;
-    const checkEmail = await Volunteer.findOne({ email });
+    const checkEmail = await Volunteer.findOne({ email: email });
 
     if (checkEmail) {
       res.status(401).json({

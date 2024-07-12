@@ -4,10 +4,8 @@ import { config } from "dotenv";
 config();
 
 const PRODUCTION_URI = process.env.PRODUCTION;
-const DEVELOPMENT_URI = process.env.DEVELOPMENT;
 
-const sequelize = new Sequelize(
-  process.env.NODE_ENV === "DEVELOPMENT" ? DEVELOPMENT_URI : PRODUCTION_URI,
+const sequelize = new Sequelize(PRODUCTION_URI,
   {
     dialect: "postgres",
     dialectOptions: {
@@ -16,11 +14,10 @@ const sequelize = new Sequelize(
         rejectUnauthorized: false,
       },
     },
-    logging: process.env.NODE_ENV === "DEVELOPMENT" ? console.log : false,
+    logging: false,
   }
 );
 
-// Sync database models
 
 export const WaitingUser = sequelize.define("user", {
   id: {
