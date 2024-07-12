@@ -4,10 +4,11 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   server: {
-    host: true,
-    port: 3000,
-  },
-  build: {
-    outDir: 'dist',
+    proxy: {
+      '/api': {
+        target: 'https://waitlist-lbuq.onrender.com',
+        changeOrigin: true,
+      },
+    },
   },
 });
