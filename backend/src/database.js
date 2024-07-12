@@ -1,15 +1,14 @@
 import { Sequelize, DataTypes } from "sequelize";
 import { config } from "dotenv";
 
-
 config();
 
 const PRODUCTION_URI = process.env.PRODUCTION;
 const DEVELOPMENT_URI = process.env.DEVELOPMENT;
-let sequelize;
 
-if (process.env.NODE_ENV === "DEVELOPMENT") {
-  sequelize = new Sequelize(DEVELOPMENT_URI, {
+const sequelize = new Sequelize(
+  process.env.NODE_ENV === "DEVELOPMENT" ? DEVELOPMENT_URI : PRODUCTION_URI,
+  {
     dialect: "postgres",
     dialectOptions: {
       ssl: {
@@ -17,36 +16,21 @@ if (process.env.NODE_ENV === "DEVELOPMENT") {
         rejectUnauthorized: false,
       },
     },
-    logging: console.log,
-  });
-  sequelize
-    .sync({ force: true })
-    .then(() => {
-      console.log("Database models synced");
-    })
-    .catch((err) => {
-      console.error("Error syncing database models", err);
-    });
-} else if (process.env.NODE_ENV === "PRODUCTION") {
-  sequelize = new Sequelize(PRODUCTION_URI, {
-    dialect: "postgres",
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false,
-      },
-    },
-    logging: false,
-  });
-  sequelize
-    .sync()
-    .then(() => {
-      console.log("Database models synced");
-    })
-    .catch((err) => {
-      console.error("Error syncing database models", err);
-    });
-}
+    logging: process.env.NODE_ENV === "DEVELOPMENT" ? console.log : false,
+  }
+);
+
+// Sync database models
+const syncDatabase = async () => {
+  try {
+    await sequelize.sync({ force: process.env.NODE_ENV === "DEVELOPMENT" });
+    console.log("Database models synced");
+  } catch (err) {
+    console.error("Error syncing database models", err);
+  }
+};
+
+syncDatabase();
 
 export const WaitingUser = sequelize.define("user", {
   id: {
