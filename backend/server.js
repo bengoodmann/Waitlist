@@ -15,7 +15,7 @@ config();
 const PORT = process.env.PORT || 2000;
 
 const corsOption = {
-  origin: "http://localhost:5000",
+  origin: "https://railswaitlist.onrender.com",
   optionsSuccessStatus: 200,
   credentials: true,
 };
