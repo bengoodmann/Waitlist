@@ -18,6 +18,15 @@ const sequelize = new Sequelize(PRODUCTION_URI,
   }
 );
 
+async () => {
+  try {
+    await sequelize.authenticate();
+    console.log("Database connection was successful");
+  } catch (error) {
+    console.error("An error occurred while connecting to the database", error);
+  }
+};
+
 
 export const WaitingUser = sequelize.define("user", {
   id: {
