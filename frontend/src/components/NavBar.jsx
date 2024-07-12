@@ -16,14 +16,13 @@ const NavBar = () => {
       color="white"
       width="100%"
       zIndex="1000"
-      height="70px"
     >
       <Heading
         as="h1"
         size="xl"
         fontStyle="oblique"
         transform="rotate(-5deg)"
-        fontSize="5xl"
+        fontSize="4xl"
       >
         rails
       </Heading>
