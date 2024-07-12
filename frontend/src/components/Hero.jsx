@@ -13,7 +13,7 @@ export const Hero = () => {
   return (
     <Flex
       as="section"
-      height={{ base: "100vh", sm: "60vh", lg: "100vh", md: "70vh" }}
+      height={{ base: "100vh", sm: "80vh", lg: "100vh", md: "80vh" }}
       p={[2, 4, 6]}
       align="center"
       justify="center"
