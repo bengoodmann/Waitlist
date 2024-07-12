@@ -21,7 +21,6 @@ export const Hero = () => {
       color="white"
       bg="black"
     >
-      <Box />
       <Box
         w={{ base: "", lg: "60%", sm: "100%" }}
         padding={{ base: "1rem", sm: "1.5rem" }}
@@ -53,7 +52,8 @@ export const Hero = () => {
           platform.
         </Text>
 
-        <ButtonGroup gap="1" marginTop="50px">
+        <Box marginTop="50px">
+        <ButtonGroup gap="1">
           <Link to="/join">
             <Button
               sx={{
@@ -72,6 +72,8 @@ export const Hero = () => {
             <Button size={{base: "md", sm: "md", lg: "lg"}}>Join as a Volunteer</Button>
           </Link>
         </ButtonGroup>
+        </Box>
+       
       </Box>
     </Flex>
   );
