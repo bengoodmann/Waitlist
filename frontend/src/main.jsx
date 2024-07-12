@@ -13,10 +13,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         toastOptions={{
           defaultOptions: {
             position: "top-right",
-            duration: 5000,
+            duration: 4000,
             isClosable: true,
             containerStyle: {
-              width: "400px",
+              width: "300px",
               maxWidth: "100%",
             },
           },
