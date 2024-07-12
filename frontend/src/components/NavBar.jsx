@@ -16,6 +16,7 @@ const NavBar = () => {
       color="white"
       width="100%"
       zIndex="1000"
+      height="70px"
     >
       <Heading
         as="h1"
