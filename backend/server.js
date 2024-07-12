@@ -27,6 +27,7 @@ app.use(cors(corsOption));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
+app.set('trust proxy', true);
 
 
 app.use("/api/", apiRoute)
