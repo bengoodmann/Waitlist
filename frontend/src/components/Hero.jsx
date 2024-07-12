@@ -52,7 +52,7 @@ export const Hero = () => {
           platform.
         </Text>
 
-      <Box marginTop="50px" padding="1.5rem" alignContent="center">
+        <Box marginTop="50px">
         <ButtonGroup gap="1">
           <Link to="/join">
             <Button
