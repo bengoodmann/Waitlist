@@ -24,8 +24,8 @@ export const Hero = () => {
       <Box />
       <Box
         w={{ base: "", lg: "60%", sm: "100%" }}
-        padding={{ base: "0rem", sm: "1rem" }}
-        marginTop={{ base: "0%", sm: "50px", lg: "100px" }}
+        padding={{ base: "1rem", sm: "1.5rem" }}
+        marginTop={{ base: "0%", sm: "70px", lg: "100px" }}
       >
         <Heading
           as="h1"
@@ -63,13 +63,13 @@ export const Hero = () => {
                   bg: "#000020",
                 },
               }}
-              size={{base: "", sm: "md", lg: "lg"}}
+              size={{base: "md", sm: "md", lg: "lg"}}
             >
               Join Waitlist
             </Button>
           </Link>
           <Link to="/volunteer">
-            <Button size={{base: "", sm: "md", lg: "lg"}}>Join as a Volunteer</Button>
+            <Button size={{base: "md", sm: "md", lg: "lg"}}>Join as a Volunteer</Button>
           </Link>
         </ButtonGroup>
       </Box>
