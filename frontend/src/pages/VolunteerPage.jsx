@@ -42,6 +42,7 @@ const VolunteerPage = () => {
         description: res.data.message,
         status: "success",
       });
+      navigate("/")
     } catch (error) {
       const err = error.response?.data?.message || error.response?.data[0];
       toast({
