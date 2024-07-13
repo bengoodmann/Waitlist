@@ -14,7 +14,7 @@ const ipinfoWrapper = new IPinfoWrapper(process.env.TOKEN);
 router.post("/track", async (req, res) => {
   const { endpoint } = req.body;
   try {
-    const ip = req.ip
+    const ip = req.ip;
     const data = await ipinfoWrapper.lookupIp(ip);
 
     await Tracker.create({
@@ -33,7 +33,7 @@ router.post("/track", async (req, res) => {
 router.post("/join", async (req, res) => {
   try {
     const { name, email, test, pro, recommendFeatures } = req.body;
-    const checkEmail = await WaitingUser.findOne({ email:email });
+    const checkEmail = await WaitingUser.findOne({ where: { email: email } });
 
     if (checkEmail) {
       res
@@ -60,7 +60,7 @@ router.post("/join", async (req, res) => {
 router.post("/volunteer", async (req, res) => {
   try {
     const { name, email, profession, experience } = req.body;
-    const checkEmail = await Volunteer.findOne({ email: email });
+    const checkEmail = await Volunteer.findOne({ where: { email: email } });
 
     if (checkEmail) {
       res.status(401).json({
