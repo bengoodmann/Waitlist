@@ -5,8 +5,9 @@ import HomePage from "./pages/HomePage";
 import JoinPage from "./pages/JoinPage";
 import VolunteerPage from "./pages/VolunteerPage";
 
-axios.defaults.baseURL = "https://waitlist-lbuq.onrender.com/api/";
+axios.defaults.baseURL = import.meta.env.VITE_API_URL
 axios.defaults.withCredentials = false;
+
 
 const App = () => {
 

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
 import tracker from "../components/tracker";
 import {
   FormControl,
@@ -53,7 +52,7 @@ const JoinPage = () => {
       const err = error.response?.data?.message || error.response?.data[0];
       toast({
         title: "Error",
-        description: err || "An error occurred",
+        description: err,
         status: "error",
       });
       console.log(error);
@@ -67,7 +66,7 @@ const JoinPage = () => {
   return (
     <Box maxW="xl" mx="auto" mt={4} p={4}>
       <Box display="flex" justifyContent="center" mb={2}>
-        <Heading  as="h2">Join Waiting List</Heading>
+        <Heading as="h2">Join Waiting List</Heading>
       </Box>
 
       <form onSubmit={handleSubmit}>
@@ -139,14 +138,17 @@ const JoinPage = () => {
           />
         </FormControl>
         <Box display="flex" justifyContent="center">
-          <Button type="submit" size="lg"
+          <Button
+            type="submit"
+            size="lg"
             sx={{
               bg: "#000080",
               color: "white",
               _hover: {
                 bg: "#000020",
               },
-            }}>
+            }}
+          >
             {loading ? <Spinner /> : "Join Waitlist"}
           </Button>
         </Box>
