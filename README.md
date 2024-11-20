@@ -1,2 +1,4 @@
 # Waitlist
- An app that let's users wait for the app that I'm building.
+A simple waitlist app to capture users email, name and recommended features.
+
+https://waitlist-fe.onrender.com
