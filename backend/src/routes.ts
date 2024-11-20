@@ -1,20 +1,24 @@
-import { Router } from "express";
+import { Request, Response, Router } from "express";
 import { IPinfoWrapper } from "node-ipinfo";
-import { Tracker, Volunteer, WaitingUser } from "./database.js";
+import { Tracker, Volunteer, WaitingUser } from "./database";
 import {
   sendVolunteerEmail,
   sendVolunteerNotification,
   sendWaitNotification,
   sendWaitingUserEmail,
-} from "./email.js";
+} from "./email";
+
+import { config } from "dotenv";
+
+config();
 
 const router = Router();
-const ipinfoWrapper = new IPinfoWrapper(process.env.TOKEN);
+const ipinfoWrapper = new IPinfoWrapper(process.env.TOKEN!);
 
-router.post("/track", async (req, res) => {
+router.post("/track", async (req: Request, res: Response) => {
   const { endpoint } = req.body;
   try {
-    const ip = req.ip;
+    const ip: string = req.ip!;
     const data = await ipinfoWrapper.lookupIp(ip);
 
     await Tracker.create({
@@ -30,10 +34,15 @@ router.post("/track", async (req, res) => {
   }
 });
 
-router.post("/join", async (req, res) => {
+router.post("/join", async (req: Request, res: Response) => {
   try {
-    const { name, email, test, pro, recommendFeatures } = req.body;
-    const checkEmail = await WaitingUser.findOne({ where: { email: email } });
+    const { name, email, test, pro, recommendFeatures } = req.body
+
+    if(!(name && email && test && pro)){
+      res.status(401).json({message: "All fields are required"})
+    }
+
+    const checkEmail = await WaitingUser.findOne({ where: { email } });
 
     if (checkEmail) {
       res
@@ -57,10 +66,10 @@ router.post("/join", async (req, res) => {
   }
 });
 
-router.post("/volunteer", async (req, res) => {
+router.post("/volunteer", async (req: Request, res: Response) => {
   try {
     const { name, email, profession, experience } = req.body;
-    const checkEmail = await Volunteer.findOne({ where: { email: email } });
+    const checkEmail = await Volunteer.findOne({ where: { email } });
 
     if (checkEmail) {
       res.status(401).json({

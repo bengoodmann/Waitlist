@@ -3,30 +3,14 @@ import { config } from "dotenv";
 
 config();
 
-const PRODUCTION_URI = process.env.PRODUCTION;
-
-const sequelize = new Sequelize(PRODUCTION_URI,
-  {
-    dialect: "postgres",
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false,
-      },
-    },
-    logging: false,
-  }
-);
-
-async () => {
-  try {
-    await sequelize.authenticate();
-    console.log("Database connection was successful");
-  } catch (error) {
-    console.error("An error occurred while connecting to the database", error);
-  }
-};
-
+const sequelize = new Sequelize({
+  dialect: "sqlite",
+  storage:
+    process.env.NODE_ENV === "PRODUCTION"
+      ? "./dist/database.sqlite"
+      : "./src/database.sqlite",
+  logging: false,
+});
 
 export const WaitingUser = sequelize.define("user", {
   id: {
@@ -90,5 +74,14 @@ export const Tracker = sequelize.define("tracker", {
   city: { type: DataTypes.STRING },
   endpoint: { type: DataTypes.STRING },
 });
+
+async () => {
+  try {
+    await sequelize.authenticate();
+    console.log("Database connection was successful");
+  } catch (error) {
+    console.error("An error occurred while connecting to the database", error);
+  }
+};
 
 export { sequelize };
